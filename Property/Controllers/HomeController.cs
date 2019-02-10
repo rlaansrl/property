@@ -15,7 +15,7 @@ namespace Property.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Register(User model)
         {
             ViewData["Message"] = "Your application description page.";
 
