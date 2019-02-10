@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Property.DataContext;
 
 namespace Property.Migrations
 {
     [DbContext(typeof(PropertyDbContext))]
-    partial class PropertyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190210065145_Property3")]
+    partial class Property3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

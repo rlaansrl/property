@@ -9,7 +9,7 @@ namespace Property.DataContext
 {
     public class PropertyDbContext :DbContext
     {
-        DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
