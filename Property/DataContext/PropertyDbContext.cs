@@ -10,10 +10,11 @@ namespace Property.DataContext
     public class PropertyDbContext :DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Board> Boards { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=119.192.49.164;Database=Property;User Id=sa;Password =qwer10; ");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-5O7RUKC\SQLEXPRESS;Database=Property;User Id=sa;Password =sa1234; ");
         }
     }
 }

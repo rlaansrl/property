@@ -3,40 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Property.DataContext;
 
 namespace Property.Migrations
 {
     [DbContext(typeof(PropertyDbContext))]
-    partial class PropertyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190214053902_Propert4")]
+    partial class Propert4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Property.Models.Board", b =>
-                {
-                    b.Property<int>("BoardNo")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BoardContent");
-
-                    b.Property<string>("BoardTitle");
-
-                    b.Property<int>("UserNo");
-
-                    b.HasKey("BoardNo");
-
-                    b.HasIndex("UserNo");
-
-                    b.ToTable("Boards");
-                });
 
             modelBuilder.Entity("Property.Models.User", b =>
                 {
@@ -75,14 +58,6 @@ namespace Property.Migrations
                     b.HasKey("UserNo");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Property.Models.Board", b =>
-                {
-                    b.HasOne("Property.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserNo")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

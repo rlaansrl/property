@@ -30,10 +30,11 @@
                 <label>성별</label>
             </div>
             <div class="checkbox">
-                <input type="radio" name="gender" value="man" />
+                <input type="radio" name="UserGender" asp-for="UserGender" value="man" checked />
                 <label class="">남자</label>
-                <input type="radio" name="gender" value="woman" />
+                <input type="radio" name="UserGender" asp-for="UserGender" value="woman" />
                 <label>여자</label>
+                <span class="text-danger" asp-validation-for="UserGender"></span>
             </div>
             <div class="form-group">
                 <label>이메일</label>
@@ -47,7 +48,8 @@
             </div>
             <div class="form-group">
                 <label>주소</label>
-                <input type="text" class="form-control" />
+                <input type="text" class="form-control" asp-for="UserAddress" />
+                <span class="text-danger" asp-validation-for="UserAddress"></span>
             </div>
             
                 <button type="submit" class="btn btn-default">회원가입</button>

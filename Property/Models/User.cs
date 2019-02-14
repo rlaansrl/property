@@ -34,9 +34,9 @@ namespace Property.Models
         [DataType(DataType.Password)]
         public string UserPw { get; set; }
 
-        [DataType(DataType.Password)]
+        /*[DataType(DataType.Password)]
         [Compare("Password",ErrorMessage ="비밀번호를 확인해 주세요.")]
-        public string ConfirmUserPw { get; set; }
+        public string ConfirmUserPw { get; set; }*/
 
         /// <summary>
         /// 회원 주소
@@ -73,13 +73,11 @@ namespace Property.Models
         /// <summary>
         /// 회원 레벨
         /// </summary>
-        [Required]
         public int Level { get; set; }
 
         /// <summary>
         /// 회원가입날짜
         /// </summary>
-        [Required]
         public DateTime UserInsertDate { get; set; }
     }
 }
