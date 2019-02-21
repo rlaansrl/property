@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Property.Models;
+using Property.Models.User;
 
 namespace Property.Controllers
 {

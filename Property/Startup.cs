@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Property.Models.User;
 
 namespace Property
 {
@@ -21,6 +22,7 @@ namespace Property
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IUserRepository,UserRepository>();
             services.AddMvc();
             services.AddSession();
         }

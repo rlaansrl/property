@@ -1,17 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Property.DataContext;
-using Property.Models;
+using Property.Models.User;
 using Property.ViewModels;
 
 namespace Property.Controllers
 {
     public class UserController : Controller
     {
+        private IUserRepository _repository;
+        public UserController(IUserRepository repository)
+        {
+            _repository = repository;
+        }
         /// <summary>
         /// 로그인 190210
         /// </summary>
@@ -31,16 +36,9 @@ namespace Property.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var db = new PropertyDbContext())
+                if (_repository.UserLogin(model))
                 {
-                    var user = db.Users.FirstOrDefault(u=>u.UserId.Equals(model.UserId)
-                                                        &&u.UserPw.Equals(model.UserPw));
-                    if (user !=null)
-                    {
-                        //로그인 성공
-                        HttpContext.Session.SetInt32("USER_LOGIN_KEY", user.UserNo);
-                        return RedirectToAction("Index", "Home");
-                    }
+                    HttpContext.Session.SetString("USER_LOGIN_KEY",model.UserId);
                 }
                 ModelState.AddModelError(string.Empty,"아이디 또는 비밀번호가 올바르지 않습니다.");
             }
@@ -79,16 +77,23 @@ namespace Property.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var db = new PropertyDbContext())
-                {
-                    model.UserInsertDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-mm-dd HH:mm:ss"));
-                    db.Users.Add(model);
-                    db.SaveChanges();
-                }
+                _repository.AddUser(model);
                 return RedirectToAction("Index", "Home");
 
             }
             return View(model);
         }
+        /*public async Task<IActionResult> IdCheck(User model)
+        {
+            using (var db = new PropertyDbContext())
+            {
+                var user = db.Users.FirstOrDefault(u=>u.UserId.Equals(model.UserId));
+                if (user !=null)
+                {
+                    ModelState.AddModelError("UserId", "사용할수없는 아이디입니다.");
+                }
+            }
+            return Json("true");
+        }*/
     }
 }

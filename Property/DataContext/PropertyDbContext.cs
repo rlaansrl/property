@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Property.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Property.Models.User;
 
 namespace Property.DataContext
 {

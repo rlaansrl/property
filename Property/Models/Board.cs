@@ -14,8 +14,5 @@ namespace Property.Models
         public string BoardTitle { get; set; }
         public string BoardContent { get; set; }
 
-        public int UserNo { get; set; }
-        [ForeignKey("UserNo")]
-        public virtual User User { get; set; }
     }
 }
