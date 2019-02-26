@@ -40,8 +40,9 @@ namespace Property.Controllers
                 {
                     HttpContext.Session.SetString("USER_LOGIN_KEY",model.UserId);
                 }
-                ModelState.AddModelError(string.Empty,"아이디 또는 비밀번호가 올바르지 않습니다.");
+                return RedirectToAction("index", "Home");
             }
+            ModelState.AddModelError(string.Empty, "아이디 또는 비밀번호가 올바르지 않습니다.");
             return View(model);
         }
 
@@ -75,6 +76,12 @@ namespace Property.Controllers
         [HttpPost] 
         public IActionResult Register(User model)
         {
+            if (_repository.UserIdCheck(model.UserId) == true)
+            {
+                ModelState.AddModelError("UserId", "사용할수없는 아이디입니다.");
+                return View(model);
+            }
+            
             if (ModelState.IsValid)
             {
                 _repository.AddUser(model);
@@ -95,5 +102,19 @@ namespace Property.Controllers
             }
             return Json("true");
         }*/
+        public IActionResult Juso()
+        {
+            return View();
+        }
+
+        public IActionResult jusoPop()
+        {
+            if (Request.Form["inputYn"].ToString()!=null)
+            {
+
+                string a = Request.Form["inputYn"];
+            }
+            return View();
+        }
     }
 }

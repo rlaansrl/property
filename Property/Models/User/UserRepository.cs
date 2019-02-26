@@ -36,5 +36,18 @@ namespace Property.Models.User
             }
             return false;
         }
+
+        public bool UserIdCheck(string id)
+        {
+            using (var db = new PropertyDbContext())
+            {
+                var checkId = db.Users.FirstOrDefault(ID => ID.UserId.Equals(id));
+                if (checkId == null)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace Property.Models.User
     {
         void AddUser(User model);
         bool UserLogin(LoginViewModel model);
+        bool UserIdCheck(string id);
     }
 }

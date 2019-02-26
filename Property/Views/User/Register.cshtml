@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label>생년월일</label>
-                <input type="text" class="form-control" asp-for="UserBirth" />
+                <input type="text" class="form-control" asp-for="UserBirth" readonly/>
                 <span class="text-danger" asp-validation-for="UserBirth"></span>
             </div>
             <div class="form-group">
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label>주소</label>
-                <input type="text" class="form-control" asp-for="UserAddress" />
+                <input type="text" class="form-control" asp-for="UserAddress" readonly placeholder="클릭시 주소입력."/>
                 <span class="text-danger" asp-validation-for="UserAddress"></span>
             </div>
             
@@ -59,20 +59,29 @@
         </form>
     </div>
 </div>
-<!--script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
-        $("#UserId").focusout(function () {
-            var s = $("#UserId").val();
-            console.log(s);
-            $.ajax({
-                data: { "UserId": $("#UserId").val()},
-                type: "POST",
-                url: "/User/IdCheck/",
-                dataType: "json",
-                success: function (xhr) {
-                    alert(xhr);
-                }
-            });
-        })
+        $.datepicker.setDefaults();
+        $("#UserBirth").datepicker({
+            dateFormat: 'yy-mm-dd',
+
+            changeMonth: true,
+            changeYear: true,
+            showMonthAfterYear: true,
+            yearRange: 'c-100:c+10',
+            MonthRange : "1:12",
+            dayNamesMin: ["일", "월", "화", "수", "목", "금", "토", "일"],
+            months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+            monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+            monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+        });
+
+        $("#UserAddress").click(function () {
+            window.open("/User/juso", "width=570,height=420, scrollbars=yes, resizable=yes");
+        });
+
+
+
+        
     })
-</!--script>
+</script>
