@@ -109,12 +109,26 @@ namespace Property.Controllers
 
         public IActionResult jusoPop()
         {
-            if (Request.Form["inputYn"].ToString()!=null)
-            {
-
-                string a = Request.Form["inputYn"];
-            }
+           // string a = HttpContext.Request.Form["inputYn"].ToString();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult jusoPop(IFormCollection form , jusoViewModel model)
+        {
+
+            ViewData["inputYn"]= form["inputYn"].ToString();
+            model.roadFullAddr = form["roadFullAddr"].ToString();
+            string d = form["roadFullAddr"].ToString();
+            ViewData["test"] = "안녕하세요";
+            ViewData["roadAddrPart1"] = form["roadAddrPart1"].ToString();
+            ViewData["addrDetail"] = form["addrDetail"].ToString();
+            ViewData["roadAddrPart2"] = form["roadAddrPart2"].ToString();
+            ViewData["engAddr"] = form["engAddr"].ToString();
+            ViewData["jibunAddr"] = form["jibunAddr"].ToString();
+            // string a = HttpContext.Request.Form["inputYn"].ToString();
+            return View(model);
+        }
+
     }
 }

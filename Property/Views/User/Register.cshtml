@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <form id="registerForm" method="post" data-ajax="true"asp-controller="User" asp-action="Register">
+        <form id="registerForm" method="post" data-ajax="true" asp-controller="User" asp-action="Register">
             <div class="form-group">
                 <label>아이디</label>
                 <input type="text" asp-for="UserId" class="form-control" />
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label>생년월일</label>
-                <input type="text" class="form-control" asp-for="UserBirth" readonly/>
+                <input type="text" class="form-control" asp-for="UserBirth" readonly />
                 <span class="text-danger" asp-validation-for="UserBirth"></span>
             </div>
             <div class="form-group">
@@ -49,13 +49,47 @@
             </div>
             <div class="form-group">
                 <label>주소</label>
-                <input type="text" class="form-control" asp-for="UserAddress" readonly placeholder="클릭시 주소입력."/>
+                <input type="text" class="form-control" asp-for="UserAddress" readonly placeholder="클릭시 주소입력." />
                 <span class="text-danger" asp-validation-for="UserAddress"></span>
             </div>
-            
-                <button type="submit" class="btn btn-default">회원가입</button>
-                <a href="#" class="btn btn-warning">취소</a>
-            
+
+            <button type="submit" class="btn btn-default">회원가입</button>
+            <a href="#" class="btn btn-warning">취소</a>
+
+            <input id="roadFullAddr">
+            <input id="roadAddrPart1">
+            <input id="addrDetail">
+            <input id="roadAddrPart2">
+            <input id="engAddr">
+            <input id="jibunAddr">
+            <input id="zipNo">
+            <input id="admCd">
+            <input id="rnMgtSn">
+            <input id="bdMgtSn">
+            <input id="detBdNmList">
+            <!--2017년 2월 추가 제공-->
+            <input id="bdNm">
+            <input id="bdKdcd">
+            <input id="siNm">
+            <input id="sggNm">
+            <input id="emdNm">
+            <input id="liNm">
+            <input id="rn">
+            <input id="udrtYn">
+            <input id="buldMnnm">
+            <input id="buldSlno">
+            <input id="mtYn">
+            <input id="lnbrMnnm">
+            <input id="lnbrSlno">
+            <input id="emdNo">
+        </form>
+        <form id="form" name="form" method="post">
+            <input type="hidden" id="confmKey" name="confmKey" value="" />
+            <input type="hidden" id="returnUrl" name="returnUrl" value="" />
+            <input type="hidden" id="resultType" name="resultType" value="" />
+            <!-- 해당시스템의 인코딩타입이 EUC-KR일경우에만 추가 START-->
+            <!--input type="hidden" id="encodingType" name="encodingType" value="EUC-KR"/-->
+            <!-- 해당시스템의 인코딩타입이 EUC-KR일경우에만 추가 END-->
         </form>
     </div>
 </div>
@@ -77,11 +111,45 @@
         });
 
         $("#UserAddress").click(function () {
-            window.open("/User/juso", "width=570,height=420, scrollbars=yes, resizable=yes");
+           var pop = window.open("/User/jusoPop", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+           
         });
 
+        
 
+        
 
         
     })
+
+    function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
+        alert(roadFullAddr);
+        document.getElementById('roadFullAddr').value = roadFullAddr;
+        document.getElementById('roadAddrPart1').value = roadAddrPart1;
+        document.getElementById('addrDetail').value = addrDetail;
+        document.getElementById('roadAddrPart2').value = roadAddrPart2;
+        document.getElementById('engAddr').value = engAddr;
+        document.getElementById('jibunAddr').value = jibunAddr;
+        document.getElementById('zipNo').value = zipNo;
+        document.getElementById('admCd').value = admCd;
+        document.getElementById('rnMgtSn').value = rnMgtSn;
+        document.getElementById('bdMgtSn').value = bdMgtSn;
+        document.getElementById('detBdNmList').value = detBdNmList;
+        /**2017년 2월 추가 제공 **/
+        document.getElementById('bdNm').value = bdNm;
+        document.getElementById('bdKdcd').value = bdKdcd;
+        document.getElementById('siNm').value = siNm;
+        document.getElementById('sggNm').value = sggNm;
+        document.getElementById('emdNm').value = emdNm;
+        document.getElementById('liNm').value = liNm;
+        document.getElementById('rn').value = rn;
+        document.getElementById('udrtYn').value = udrtYn;
+        document.getElementById('buldMnnm').value = buldMnnm;
+        document.getElementById('buldSlno').value = buldSlno;
+        document.getElementById('mtYn').value = mtYn;
+        document.getElementById('lnbrMnnm').value = lnbrMnnm;
+        document.getElementById('lnbrSlno').value = lnbrSlno;
+        /**2017년 3월 추가 제공 **/
+        document.getElementById('emdNo').value = emdNo;
+    }
 </script>
