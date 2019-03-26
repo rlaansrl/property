@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.WebEncoders;
 using Property.Models.User;
 
 namespace Property
@@ -25,6 +28,10 @@ namespace Property
             services.AddTransient<IUserRepository,UserRepository>();
             services.AddMvc();
             services.AddSession();
+            services.Configure<WebEncoderOptions>(options =>
+            {
+                options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All); // 한글이 인코딩되는 문제 해결
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,5 +56,6 @@ namespace Property
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
     }
 }
